@@ -15,18 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CWaveFile.h">
+    <ClInclude Include="SoundPlayer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
+    <ClInclude Include="ReadDataFormWaveFile.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceVoice.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CWaveFile.cpp">
+    <ClCompile Include="SoundPlayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Sound.cpp">
+    <ClCompile Include="SourceVoice.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

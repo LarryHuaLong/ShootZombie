@@ -19,12 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CWaveFile.h" />
-    <ClInclude Include="Sound.h" />
+    <ClInclude Include="ReadDataFormWaveFile.h" />
+    <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="SourceVoice.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CWaveFile.cpp" />
-    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="SourceVoice.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

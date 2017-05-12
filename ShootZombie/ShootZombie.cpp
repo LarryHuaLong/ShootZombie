@@ -103,67 +103,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
    
-   HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);;//com初始化  
-   if (FAILED(hr))
-	   return 0;
-
-   IXAudio2 *pEngine = NULL;
-   hr = XAudio2Create(&pEngine);//创建引擎  
-   if (FAILED(hr))
-	   return 0;
-
-   IXAudio2MasteringVoice *pMasterVoice = NULL;
-   hr = pEngine->CreateMasteringVoice(&pMasterVoice);//创建主声音，默认是输出当前扬声器  
-   if (FAILED(hr))
-	   return 0;
-
-   CWaveFile waveFile;
-   hr = waveFile.Open(L"bgm.wav", NULL, WAVEFILE_READ);//加载文件  
-   if (FAILED(hr))
-	   return 0;
-
-   WAVEFORMATEX *waveFormat = waveFile.GetFormat();//获取文件格式  
-   IXAudio2SourceVoice *pSourceVoice = NULL;
-   hr = pEngine->CreateSourceVoice(&pSourceVoice, waveFormat);//创建源声音，用来提交数据  
-   if (FAILED(hr))
-	   return 0;
-
-   DWORD size = waveFile.GetSize();//获取文件的大小  
-   BYTE *pData = new BYTE[size];//申请内存空间，用于保存数据  
-   hr = waveFile.Read(pData, size, &size);//读取文件内容  
-   if (FAILED(hr))
-	   return 0;
-
-   XAUDIO2_BUFFER buffer = { 0 };//将读取的文件数据，赋值XAUDIO2_BUFFER  
-   buffer.AudioBytes = size;
-   buffer.pAudioData = pData;
-   buffer.Flags = XAUDIO2_END_OF_STREAM;
-
-   hr = pSourceVoice->SubmitSourceBuffer(&buffer);//提交内存数据  
-   if (FAILED(hr))
-	   return 0;
-
-   hr = pSourceVoice->Start(0);//启动源声音  
-   if (FAILED(hr))
-	   return 0;
-
-   XAUDIO2_VOICE_STATE state;
-   pSourceVoice->GetState(&state);//获取状态  
-   while (state.BuffersQueued)
-   {
-	   pSourceVoice->GetState(&state);
-	   Sleep(10);
-   }
-
-   pMasterVoice->DestroyVoice();//释放资源  
-   pSourceVoice->DestroyVoice();//释放资源  
-   pEngine->Release();//释放资源  
-   CoUninitialize();//释放资源  
-
-   delete[]pData;//释放资源  
-   pData = NULL;
-  
-
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -184,13 +123,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_COMMAND:
+	case WM_CREATE:
+		{
+		CSoundPlayer Player;
+		
+		CSourceVoice BGM;
+		}
+		break;
+	case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
             // 分析菜单选择: 
             switch (wmId)
             {
+			case IDM_PLAY:
+
+				break; 
+			case IDM_PAUSE:
+				break;
+			case IDM_STOP:
+				break;
             case IDM_ABOUT:
+
+
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
             case IDM_EXIT:

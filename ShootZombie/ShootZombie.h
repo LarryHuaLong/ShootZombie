@@ -9,9 +9,4 @@
 #include <tchar.h>
 
 #include <xaudio2.h>
-#include <mmsystem.h>
-#include <mmreg.h>
-#include "..\Sound System\Sound.h"
-
-
-
+#include "..\Sound System\SoundPlayer.h"
